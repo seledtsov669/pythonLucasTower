@@ -1,26 +1,26 @@
-def move_discs(n, from_peg, to_peg, temp_peg):
+def move_rings(n, init_tow, end_tow, temp_tow):
     """
     Guide that shows the process of solving the conundrum
     :param n: number of discs
-    :param from_peg: initial tower
-    :param to_peg: tower to move to
-    :param temp_peg: temporary tower
+    :param init_tow: initial tower
+    :param end_tow: tower to move to
+    :param temp_tow: temporary tower
     :return: None
     """
     if n > 0:
-        move_discs(n - 1, from_peg, temp_peg, to_peg)
-        print('Переложить кольцо с', from_peg, 'башни на', to_peg)
-        move_discs(n - 1, temp_peg, to_peg, from_peg)
+        move_rings(n - 1, init_tow, temp_tow, end_tow)
+        print('Перенести кольцо с', init_tow, 'башни на', end_tow)
+        move_rings(n - 1, temp_tow, end_tow, init_tow)
 
 def lucas_tower():
-    "Function call"
-    num_discs = int(input('Введите количество дисков: '))
-    from_peg = 1
-    temp_peg = 2
-    to_peg = 3
-    move_discs(num_discs, from_peg, to_peg, temp_peg)
-    print('Все кольца перемещены')
-    r = (2 ** num_discs) - 1
+    """Function call"""
+    num = int(input('Введите количество дисков: '))
+    init_tow = 1
+    temp_tow = 2
+    end_tow = 3
+    r = (2 ** num) - 1
+    move_rings(num, init_tow, end_tow, temp_tow)
+    print('Головоломка решена')
     print('Количество сделанных перемещений для решения головоломки:', r)
 
 lucas_tower()
